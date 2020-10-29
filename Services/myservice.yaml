@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mynginx-service
+  labels:
+    app: mynginx        # this must be there and match the selector (read more on this!)
+spec:
+  type: NodePort
+  selector:             # copy selectors under "labels" in the pod file
+    app: mynginx
+  ports:
+    - port: 80          # port on service 
+      targetPort: 80    # port on the pod (default: same value as Port)
+#      nodePort: 30008   # port on node (default: automatic assignment 30k-32k)
+      # name: myservice   # can be anything (I think)
+      # nodeport -> port -> targetPort

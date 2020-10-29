@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: ml-replicaset
+  labels:
+    app: mypredictor
+    type: machinelearning
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      type: machinelearning
+  template:
+    metadata:
+      name: ml-pod
+      labels:
+        app: mypredictor
+        type: machinelearning
+    spec:
+      containers:
+      - name: redit-ml
+        image: redis
